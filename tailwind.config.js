@@ -18,7 +18,10 @@ export default {
       'off-white': '#DDCEBB',
       'green': '#52EA81',
       'yellow': '#DF9B49',
-      'dark-pink': '#894555'
+      'dark-pink': '#894555',
+      'red': '#FF6D60',
+      'lime-yellow': '#F7D060',
+      'lime-green': '#16FF00'
     },
   },
   plugins: [],

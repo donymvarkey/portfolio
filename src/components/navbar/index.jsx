@@ -1,8 +1,8 @@
 
 const Navbar = () => {
   return (
-    <div className='max-w-screen-xl p-4'>
-      <div className='flex flex-wrap items-center justify-between'>
+    <div className='max-w-screen-6xl p-4'>
+      <div className='flex items-center justify-between'>
         <a href="/">
           <div className='flex text-4xl text-off-white'>
             <p className='me-2 font-bold'>Dony</p><span className='font-light'>M Varkey</span>

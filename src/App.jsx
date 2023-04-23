@@ -1,4 +1,5 @@
 import Navbar from "./components/navbar"
+import UnderConstruction from "./components/under-construction"
 
 function App() {
 
@@ -7,6 +8,9 @@ function App() {
       <div className="flex justify-center">
         <div className='container mx-auto py-4'>
           <Navbar />
+          <div>
+            <UnderConstruction />
+          </div>
         </div>
       </div>
     </div>
