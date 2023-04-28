@@ -1,17 +1,16 @@
+import About from "./components/about"
+import Hero from "./components/hero-section"
 import Navbar from "./components/navbar"
-import UnderConstruction from "./components/under-construction"
+import Skills from "./components/skills"
 
 function App() {
-
   return (
-    <div className='bg-black w-screen h-screen'>
-      <div className="flex justify-center">
-        <div className='container mx-auto py-4'>
-          <Navbar />
-          <div>
-            <UnderConstruction />
-          </div>
-        </div>
+    <div className='min-h-screen bg-black'>
+      <div className='py-4 mx-auto md:container'>
+        <Navbar />
+        <Hero />
+        <About />
+        <Skills />
       </div>
     </div>
   )

@@ -1,0 +1,1 @@
+export const intro = "I'm a passionate young software developer from Kerala dedicated to develop softwares that are helpful to people. Through hard work and persitance, I aim to achieve my goals. Take a look at my portfolio to see examples of my work and let's collaborate to achieve your vision."

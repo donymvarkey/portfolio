@@ -1,8 +1,7 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { BsGearFill } from "react-icons/bs";
 
 const UnderConstruction = () => {
-  const [date, setDate] = useState(new Date())
 
   return (
     <React.Fragment>
