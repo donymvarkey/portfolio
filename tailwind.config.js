@@ -7,8 +7,16 @@ export default {
   theme: {
     extend: {
       animation: {
-        spin: 'spin 3s linear infinite'
-      }
+        spin: 'spin 3s linear infinite',
+        'move-forward': 'move 2s linear infinite'
+      },
+      keyframes: {
+        move: {
+          '0%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(100%)' },
+          '100%': { transform: 'rotate(0)' },
+        },
+      },
     },
     screens: {
       sm: '350px',

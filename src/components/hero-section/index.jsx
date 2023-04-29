@@ -1,16 +1,18 @@
 import React from 'react'
+import { BsArrowRightShort } from 'react-icons/bs'
 import picture from '../../assets//self.png'
 import reactIcon from "../../assets/react.svg"
 import nodeIcon from "../../assets/node-js.svg"
 import nextIcon from "../../assets/next-js-white.svg"
+
 const Hero = () => {
   return (
     <React.Fragment>
       <div className='p-4 md:mt-5 sm:justify-center'>
-        <div className='flex justify-between p-4 sm:flex-col sm:items-center md:flex-row '>
+        <div className='flex justify-between p-4 sm:flex-col-reverse sm:items-center md:flex-row '>
           {/* Left Container */}
-          <div className='flex items-center justify-center w-full md:mt-16'>
-            <div className='flex flex-col items-start justify-center gap-3 px-2'>
+          <div className='md:mt-16 sm:mt-10 justify-center w-full flex items-center'>
+            <div className='flex flex-col  md:items-start sm:items-center justify-center gap-3 px-2'>
 
               {/* -------------------------- Full stack developer start ---------------------------- */}
               <div className='flex items-center justify-center h-full align-middle'>
@@ -30,7 +32,10 @@ const Hero = () => {
               </div>
               {/* -------------------------- Hero Comment end ------------------------------------ */}
 
-
+              <div className="relative group mt-20 flex justify-start">
+                <a href="mailto:donyvarkey@gmail.com" className="flex items-center py-2 pl-3 pr-4 font-bold transition-all ease-in rounded text-green hover:text-green md:border-0 md:hover:text-green md:p-0">{"LET'S CONNECT"}<BsArrowRightShort className='text-green ms-2 animate-move-forward' /></a>
+                <span className="absolute w-0 h-1 -bottom-1 rounded-sm  bg-green group-hover:w-full group-hover:transition-all"></span>
+              </div>
             </div>
 
           </div>
@@ -61,12 +66,12 @@ const Hero = () => {
               <p className='break-words opacity-50 text-off-white'>Years of <br /> Experience</p>
             </div>
             <div className='flex items-center space-x-4'>
-              <p className='text-5xl font-bold text-green'>6</p>
-              <p className='break-words opacity-50 text-off-white'>Projects</p>
-            </div>
-            <div className='flex items-center space-x-4'>
               <p className='text-5xl font-bold text-green'>3</p>
               <p className='break-words opacity-50 text-off-white'>Organizations</p>
+            </div>
+            <div className='flex items-center space-x-4'>
+              <p className='text-5xl font-bold text-green'>6</p>
+              <p className='break-words opacity-50 text-off-white'>Projects</p>
             </div>
           </div>
         </div>

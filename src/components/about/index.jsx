@@ -1,6 +1,6 @@
 import React from 'react'
-import { MdComputer } from "react-icons/md"
 import { FaServer, FaMobileAlt } from "react-icons/fa"
+import { GoGlobe } from "react-icons/go"
 import { intro } from '../../data/contents'
 
 
@@ -10,17 +10,17 @@ const About = () => {
       <div className='flex items-center justify-start w-full gap-2 p-4 mt-8 sm:mt-5 sm:flex-col md:flex-row'>
         <div className='flex flex-col w-full gap-2'>
 
-          <div className='flex items-center justify-between w-full p-4 rounded-md bg-dark-gray hover:shadow-sm hover:shadow-off-white h-36'>
+          <div className='flex items-center justify-between w-full p-4 rounded-md bg-dark-gray h-36'>
             <div className='flex flex-col items-start justify-start w-10/12'>
               <h3 className='font-mono text-2xl font-semibold text-green'>Front-End</h3>
               <p className='mt-3 text-off-white'>Develop optimised code for web using React.js and Next.js</p>
             </div>
             <div className='flex items-center'>
-              <MdComputer className='text-2xl text-off-white' />
+              <GoGlobe className='text-2xl text-off-white' />
             </div>
           </div>
 
-          <div className='flex items-center justify-between w-full p-4 rounded-md bg-dark-gray hover:shadow-sm hover:shadow-off-white h-36'>
+          <div className='flex items-center justify-between w-full p-4 rounded-md bg-dark-gray h-36'>
             <div className='flex flex-col items-start justify-start w-10/12'>
               <h3 className='font-mono text-2xl font-semibold text-green'>Back-End</h3>
               <p className='mt-3 text-off-white'>Develop REST APIs using node.js</p>
@@ -30,7 +30,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className='flex items-center justify-between w-full p-4 rounded-md bg-dark-gray hover:shadow-sm hover:shadow-off-white h-36'>
+          <div className='flex items-center justify-between w-full p-4 rounded-md bg-dark-gray h-36'>
             <div className='flex flex-col items-start justify-start w-10/12'>
               <h3 className='font-mono text-2xl font-semibold text-green'>Mobile</h3>
               <p className='mt-3 text-off-white text'>Develop mobile applications for Android and iOS using React Native</p>
