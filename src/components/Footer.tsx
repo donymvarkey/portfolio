@@ -6,6 +6,7 @@ import {
   Mail,
   ArrowUpRight,
   Instagram,
+  MapPin,
 } from "lucide-react";
 import { Logo } from "./Logo";
 
@@ -34,11 +35,11 @@ export const Footer = () => {
       href: "mailto:donyvarkey@gmail.com",
     },
     // { icon: Phone, text: "+1 (555) 123-4567", href: "tel:+15551234567" },
-    // {
-    //   icon: MapPin,
-    //   text: "San Francisco, CA",
-    //   href: "https://maps.google.com",
-    // },
+    {
+      icon: MapPin,
+      text: "Accel Infinium 1, KINFRA IT & ITES SEZ, KINFRA Film and IT Park, Ulloorkonam, Chanthavila, Thiruvananthapuram, Kerala 695585",
+      href: "https://maps.app.goo.gl/gbL3zter8B9XRrnb8",
+    },
   ];
 
   const quickLinks = [
@@ -113,7 +114,7 @@ export const Footer = () => {
                     className="text-slate-300 hover:text-blue-400 transition-colors duration-300 flex items-center gap-2 group"
                   >
                     <Icon className="w-4 h-4" />
-                    <span>{text}</span>
+                    <span className="w-[350px]">{text}</span>
                   </a>
                 </li>
               ))}

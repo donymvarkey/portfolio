@@ -8,7 +8,8 @@ import { SectionTitle } from "./components/SectionTitle";
 import { ServiceCard } from "./components/ServiceCard";
 import { Footer } from "./components/Footer";
 import { projects, services } from "./constants";
-import { npm, self, self1, selfGradient } from "./assets";
+import { npm, self } from "./assets";
+import Contact from "./components/Contact";
 
 function App() {
   const { scrollYProgress } = useScroll();
@@ -88,7 +89,7 @@ function App() {
                     "MongoDB",
                   ].map((tech, index) => (
                     <span
-                      key={tech}
+                      key={index}
                       className="px-4 py-2 rounded-full text-sm font-medium bg-slate-800 text-slate-300 border border-slate-700 font-space-grotesk"
                     >
                       {tech}
@@ -218,8 +219,10 @@ function App() {
               <div className="relative aspect-square overflow-hidden rounded-3xl">
                 <div className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl backdrop-blur-xl border border-slate-700" />
                 <img
-                  src={selfGradient}
-                  alt="Dony M Varkey"
+                  src={
+                    "https://images.unsplash.com/photo-1537432376769-00f5c2f4c8d2?auto=format&fit=crop&q=80&w=1000"
+                  }
+                  alt="Coding"
                   className="absolute inset-0 w-full h-full object-cover rounded-3xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900 via-transparent to-transparent rounded-3xl" />
@@ -418,56 +421,7 @@ function App() {
 
       {/* Contact Section */}
       <section id="contact" className="py-20 relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(59,130,246,0.1),transparent_70%)]" />
-        <div className="container mx-auto px-4 relative">
-          <SectionTitle>
-            <span className="font-space-grotesk">Get in Touch</span>
-          </SectionTitle>
-          <div className="max-w-2xl mx-auto">
-            <motion.form
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="space-y-6"
-            >
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2 font-space-grotesk">
-                    Name
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent transition-all duration-300"
-                    placeholder="Your name"
-                  />
-                </div>
-                <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2 font-space-grotesk">
-                    Email
-                  </label>
-                  <input
-                    type="email"
-                    className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:ring-2 focus:ring-blue-500 focus:outline-none focus:border-transparent transition-all duration-300"
-                    placeholder="your@email.com"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2 font-space-grotesk">
-                  Message
-                </label>
-                <textarea
-                  rows={6}
-                  className="w-full px-4 py-3 rounded-lg bg-slate-800 border border-slate-700 text-white focus:ring-2 focus:outline-none focus:ring-blue-500 focus:border-transparent transition-all duration-300"
-                  placeholder="Your message"
-                />
-              </div>
-              <Button variant="primary" icon>
-                <span className="font-space-grotesk">Send Message</span>
-              </Button>
-            </motion.form>
-          </div>
-        </div>
+        <Contact />
       </section>
       <Footer />
     </div>
