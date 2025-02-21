@@ -64,7 +64,7 @@ const projects = [
     id: 2,
     name: "create-mexn-app",
     image:
-      "https://github.com/donymvarkey/create-mexn-app/blob/main/images/Screenshot%202025-01-23%20at%2011.07.12%E2%80%AFAM.png?raw=true",
+      "https://raw.githubusercontent.com/donymvarkey/create-mexn-app/main/images/img1.png",
     description:
       "A CLI tool to scaffold a Mongo-Express-Node app from scratch without the hassle of setting up the project structure. Included logger support, swagger support and more.",
     url: [
