@@ -1,26 +1,156 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --canvas: #0b1220;
+  --canvas-2: #101a30;
+  --ink: #dce4f6;
+  --ink-strong: #08111f;
+  --soft: rgba(220, 228, 246, 0.78);
+  --muted: rgba(220, 228, 246, 0.48);
+  --accent: #63e6be;
+  --accent-2: #8bf3ff;
+  --highlight: #ffbf69;
+  --highlight-strong: #ffd08d;
+  --line: rgba(255, 255, 255, 0.08);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-background: var(--canvas);
+  --color-foreground: var(--ink);
+  --font-sans: "Sora", "Avenir Next", "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", "SFMono-Regular", monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    @apply border-transparent;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background:
+      radial-gradient(circle at top left, rgba(99, 230, 190, 0.18), transparent 32%),
+      radial-gradient(circle at top right, rgba(255, 191, 105, 0.14), transparent 28%),
+      linear-gradient(180deg, #0d1730 0%, #0b1220 45%, #08101b 100%);
+    color: var(--ink);
+    font-family: var(--font-sans);
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  ::selection {
+    background: rgba(255, 191, 105, 0.28);
+    color: white;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(180deg, rgba(0, 0, 0, 0.55), transparent 82%);
+}
+
+.hero-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(80px);
+  opacity: 0.8;
+}
+
+.hero-orb-one {
+  left: -8rem;
+  top: 4rem;
+  height: 18rem;
+  width: 18rem;
+  background: rgba(99, 230, 190, 0.22);
+}
+
+.hero-orb-two {
+  right: 2rem;
+  top: 7rem;
+  height: 20rem;
+  width: 20rem;
+  background: rgba(255, 191, 105, 0.18);
+}
+
+.glass-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--line);
+  backdrop-filter: blur(22px);
+  box-shadow: 0 18px 60px rgba(0, 0, 0, 0.18);
+}
+
+.spotlight-card {
+  background:
+    radial-gradient(circle at top right, rgba(139, 243, 255, 0.12), transparent 28%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.04));
+  border: 1px solid var(--line);
+  backdrop-filter: blur(24px);
+}
+
+.section-kicker {
+  color: var(--accent-2);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+.section-title {
+  margin-top: 0.9rem;
+  max-width: 44rem;
+  color: white;
+  font-size: clamp(2rem, 4vw, 3.6rem);
+  font-weight: 600;
+  letter-spacing: -0.05em;
+  line-height: 1;
+}
+
+.section-copy {
+  margin-top: 1.25rem;
+  max-width: 40rem;
+  color: var(--soft);
+  font-size: 0.98rem;
+  line-height: 1.9;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeUp 0.8s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-grid {
+    background-size: 44px 44px;
+  }
+
+  .hero-orb-one,
+  .hero-orb-two {
+    filter: blur(64px);
+  }
 }
