@@ -1,6 +1,7 @@
 import {
   ArrowRight,
   ArrowUpRight,
+  ChevronUp,
   Cloud,
   Code2,
   Download,
@@ -15,6 +16,7 @@ import {
   Server,
   Smartphone,
 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const stats = [
   { value: "6.5+", label: "Years building production software" },
@@ -159,7 +161,13 @@ const skillGroups = [
   },
   {
     title: "UI & Product",
-    items: ["TailwindCSS", "Redux Toolkit", "shadcn/ui", "Figma-to-code", "Responsive design"],
+    items: [
+      "TailwindCSS",
+      "Redux Toolkit",
+      "shadcn/ui",
+      "Figma-to-code",
+      "Responsive design",
+    ],
   },
   {
     title: "Data & Infra",
@@ -209,7 +217,84 @@ const contactLinks = [
   },
 ];
 
-export default function Home() {
+const footerLinks = [
+  {
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/donymvarkey/",
+    icon: Linkedin,
+  },
+  {
+    label: "GitHub",
+    href: "https://github.com/donymvarkey",
+    icon: Github,
+  },
+  {
+    label: "Website",
+    href: "https://donymvarkey.com/",
+    icon: Globe,
+  },
+  {
+    label: "Email",
+    href: "mailto:donyvarkey@gmail.com",
+    icon: Mail,
+  },
+];
+
+export default function App() {
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 420);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  useEffect(() => {
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const elements = document.querySelectorAll<HTMLElement>(".fade-up");
+
+    if (prefersReducedMotion) {
+      elements.forEach((element) => element.classList.add("fade-up-visible"));
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) {
+            return;
+          }
+
+          entry.target.classList.add("fade-up-visible");
+          observer.unobserve(entry.target);
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -8% 0px",
+      },
+    );
+
+    elements.forEach((element) => observer.observe(element));
+
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
+
   return (
     <main className="min-h-screen overflow-hidden bg-[var(--canvas)] text-[var(--ink)]">
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
@@ -231,7 +316,7 @@ export default function Home() {
           <a
             href="/dony-m-varkey-resume.pdf"
             download
-            className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:border-[var(--accent)] hover:bg-white/15"
+            className="button-glow inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-4 py-2 text-sm font-medium text-white transition hover:border-[var(--accent)] hover:bg-white/15"
           >
             <Download className="h-4 w-4" />
             Resume
@@ -263,7 +348,7 @@ export default function Home() {
             <div className="flex flex-wrap gap-4">
               <a
                 href="#experience"
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--highlight)] px-6 py-3 text-sm font-semibold text-[var(--ink-strong)] transition hover:translate-y-[-1px] hover:bg-[var(--highlight-strong)]"
+                className="button-glow inline-flex items-center gap-2 rounded-full bg-[var(--highlight)] px-6 py-3 text-sm font-semibold text-[var(--ink-strong)] transition hover:translate-y-[-1px] hover:bg-[var(--highlight-strong)]"
               >
                 Explore Experience
                 <ArrowRight className="h-4 w-4" />
@@ -272,7 +357,7 @@ export default function Home() {
                 href="/dony-m-varkey-resume.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition hover:border-[var(--accent)] hover:bg-white/12"
+                className="button-glow inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/6 px-6 py-3 text-sm font-semibold text-white transition hover:border-[var(--accent)] hover:bg-white/12"
               >
                 <FileText className="h-4 w-4" />
                 View Resume
@@ -281,7 +366,10 @@ export default function Home() {
 
             <div className="grid gap-4 pt-4 sm:grid-cols-3">
               {stats.map((stat) => (
-                <div key={stat.label} className="glass-panel rounded-[1.75rem] p-5">
+                <div
+                  key={stat.label}
+                  className="glass-panel lift-card rounded-[1.75rem] p-5"
+                >
                   <p className="text-2xl font-semibold tracking-[-0.04em] text-white">
                     {stat.value}
                   </p>
@@ -294,7 +382,7 @@ export default function Home() {
           </div>
 
           <div className="fade-up lg:justify-self-end">
-            <div className="spotlight-card relative overflow-hidden rounded-[2rem] border border-white/15 p-7 shadow-[0_30px_120px_rgba(7,12,27,0.45)]">
+            <div className="spotlight-card lift-card relative overflow-hidden rounded-[2rem] border border-white/15 p-7 shadow-[0_30px_120px_rgba(7,12,27,0.45)]">
               <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-[var(--highlight)]/80 to-transparent" />
               <div className="flex items-start justify-between gap-4">
                 <div>
@@ -324,7 +412,7 @@ export default function Home() {
                       >
                         {item}
                       </span>
-                    )
+                    ),
                   )}
                 </div>
               </div>
@@ -370,7 +458,7 @@ export default function Home() {
             return (
               <article
                 key={strength.title}
-                className="fade-up glass-panel rounded-[1.75rem] p-6"
+                className="fade-up glass-panel lift-card rounded-[1.75rem] p-6"
                 style={{ animationDelay: `${index * 120}ms` }}
               >
                 <div className="mb-5 inline-flex rounded-2xl bg-[var(--accent)]/12 p-3 text-[var(--accent-2)]">
@@ -408,7 +496,7 @@ export default function Home() {
           {experiences.map((experience, index) => (
             <article
               key={`${experience.company}-${experience.role}`}
-              className="fade-up grid gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:grid-cols-[8rem_1fr]"
+              className="fade-up lift-card grid gap-5 rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl md:grid-cols-[8rem_1fr]"
               style={{ animationDelay: `${index * 140}ms` }}
             >
               <div className="relative pl-10 md:pl-0">
@@ -447,7 +535,7 @@ export default function Home() {
       </section>
 
       <section className="relative mx-auto grid w-full max-w-7xl gap-8 px-6 py-8 sm:px-10 lg:grid-cols-[1fr_1fr] lg:px-12">
-        <div className="fade-up rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-7 backdrop-blur-xl">
+        <div className="fade-up lift-card rounded-[2rem] border border-white/10 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] p-7 backdrop-blur-xl">
           <p className="section-kicker">Selected Work</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white">
             Work that blends reliability, performance, and product clarity.
@@ -456,7 +544,7 @@ export default function Home() {
             {featuredWork.map((project) => (
               <article
                 key={project.name}
-                className="rounded-[1.5rem] border border-white/10 bg-black/10 p-5"
+                className="lift-card rounded-[1.5rem] border border-white/10 bg-black/10 p-5"
               >
                 <div className="flex items-start justify-between gap-4">
                   <div>
@@ -477,7 +565,7 @@ export default function Home() {
           </div>
         </div>
 
-        <div className="fade-up rounded-[2rem] border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
+        <div className="fade-up lift-card rounded-[2rem] border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
           <p className="section-kicker">Personal Projects</p>
           <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white">
             Builder energy beyond client work.
@@ -486,7 +574,7 @@ export default function Home() {
             {sideProjects.map((project) => (
               <article
                 key={project.name}
-                className="rounded-[1.5rem] border border-white/10 bg-black/10 p-5"
+                className="lift-card rounded-[1.5rem] border border-white/10 bg-black/10 p-5"
               >
                 <h3 className="text-xl font-semibold text-white">
                   {project.name}
@@ -519,7 +607,7 @@ export default function Home() {
           {skillGroups.map((group, index) => (
             <article
               key={group.title}
-              className="fade-up rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
+              className="fade-up lift-card rounded-[1.75rem] border border-white/10 bg-white/5 p-6 backdrop-blur-xl"
               style={{ animationDelay: `${index * 90}ms` }}
             >
               <p className="text-xs uppercase tracking-[0.24em] text-[var(--muted)]">
@@ -541,7 +629,7 @@ export default function Home() {
       </section>
 
       <section className="relative mx-auto grid w-full max-w-7xl gap-8 px-6 pb-24 sm:px-10 lg:grid-cols-[1.15fr_0.85fr] lg:px-12">
-        <div className="fade-up rounded-[2rem] border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
+        <div className="fade-up lift-card rounded-[2rem] border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
           <p className="section-kicker">Resume</p>
           <div className="mt-3 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
             <div>
@@ -559,7 +647,7 @@ export default function Home() {
                 href="/dony-m-varkey-resume.pdf"
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-5 py-3 text-sm font-semibold text-white transition hover:border-[var(--accent)] hover:bg-white/14"
+                className="button-glow inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/8 px-5 py-3 text-sm font-semibold text-white transition hover:border-[var(--accent)] hover:bg-white/14"
               >
                 <FileText className="h-4 w-4" />
                 Open Resume
@@ -567,7 +655,7 @@ export default function Home() {
               <a
                 href="/dony-m-varkey-resume.pdf"
                 download
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--highlight)] px-5 py-3 text-sm font-semibold text-[var(--ink-strong)] transition hover:bg-[var(--highlight-strong)]"
+                className="button-glow inline-flex items-center gap-2 rounded-full bg-[var(--highlight)] px-5 py-3 text-sm font-semibold text-[var(--ink-strong)] transition hover:bg-[var(--highlight-strong)]"
               >
                 <Download className="h-4 w-4" />
                 Download PDF
@@ -585,7 +673,7 @@ export default function Home() {
         </div>
 
         <div className="space-y-8">
-          <div className="fade-up rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(255,183,77,0.16),rgba(20,32,61,0.2))] p-7 backdrop-blur-xl">
+          <div className="fade-up lift-card rounded-[2rem] border border-white/10 bg-[linear-gradient(160deg,rgba(255,183,77,0.16),rgba(20,32,61,0.2))] p-7 backdrop-blur-xl">
             <p className="section-kicker">Writing & Credentials</p>
             <div className="mt-5 space-y-5">
               <div>
@@ -624,10 +712,11 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="fade-up rounded-[2rem] border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
+          <div className="fade-up lift-card rounded-[2rem] border border-white/10 bg-white/5 p-7 backdrop-blur-xl">
             <p className="section-kicker">Let&apos;s Connect</p>
             <h2 className="mt-3 text-3xl font-semibold tracking-[-0.04em] text-white">
-              Need someone who can move between UI polish, APIs, and product delivery?
+              Need someone who can move between UI polish, APIs, and product
+              delivery?
             </h2>
             <p className="mt-4 text-sm leading-7 text-[var(--soft)]">
               I enjoy building software that feels smooth for users and stable
@@ -637,7 +726,7 @@ export default function Home() {
             <div className="mt-8 space-y-4">
               <a
                 href="mailto:donyvarkey@gmail.com"
-                className="group flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-black/10 px-5 py-4 transition hover:border-[var(--accent)]/50 hover:bg-black/20"
+                className="group lift-card flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-black/10 px-5 py-4 transition hover:border-[var(--accent)]/50 hover:bg-black/20"
               >
                 <div className="flex items-center gap-3">
                   <Mail className="h-5 w-5 text-[var(--accent-2)]" />
@@ -649,7 +738,7 @@ export default function Home() {
                 href="https://github.com/donymvarkey"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-black/10 px-5 py-4 transition hover:border-[var(--accent)]/50 hover:bg-black/20"
+                className="group lift-card flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-black/10 px-5 py-4 transition hover:border-[var(--accent)]/50 hover:bg-black/20"
               >
                 <div className="flex items-center gap-3">
                   <Github className="h-5 w-5 text-[var(--accent-2)]" />
@@ -661,7 +750,7 @@ export default function Home() {
                 href="https://www.linkedin.com/in/donymvarkey/"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-black/10 px-5 py-4 transition hover:border-[var(--accent)]/50 hover:bg-black/20"
+                className="group lift-card flex items-center justify-between rounded-[1.5rem] border border-white/10 bg-black/10 px-5 py-4 transition hover:border-[var(--accent)]/50 hover:bg-black/20"
               >
                 <div className="flex items-center gap-3">
                   <Linkedin className="h-5 w-5 text-[var(--accent-2)]" />
@@ -675,6 +764,58 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <footer className="relative border-t border-white/10 bg-black/10">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-8 px-6 py-10 sm:px-10 lg:flex-row lg:items-center lg:justify-between lg:px-12">
+          <div className="fade-up">
+            <p className="text-sm uppercase tracking-[0.28em] text-[var(--muted)]">
+              Stay Connected
+            </p>
+            <h2 className="mt-3 text-2xl font-semibold tracking-[-0.04em] text-white">
+              Find me across the platforms where I build and share my work.
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm leading-7 text-[var(--soft)]">
+              LinkedIn for professional updates, GitHub for code, my website for
+              portfolio access, and email for direct conversations.
+            </p>
+          </div>
+
+          <div className="grid gap-3 sm:grid-cols-2">
+            {footerLinks.map((link) => {
+              const Icon = link.icon;
+
+              return (
+                <a
+                  key={link.label}
+                  href={link.href}
+                  target={link.href.startsWith("http") ? "_blank" : undefined}
+                  rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+                  className="fade-up group lift-card flex min-w-[12rem] items-center justify-between rounded-[1.25rem] border border-white/10 bg-white/5 px-4 py-3 backdrop-blur-xl transition hover:border-[var(--accent)]/50 hover:bg-white/10"
+                >
+                  <div className="flex items-center gap-3">
+                    <span className="rounded-full bg-white/10 p-2 text-[var(--accent-2)]">
+                      <Icon className="h-4 w-4" />
+                    </span>
+                    <span className="text-sm font-medium text-white">
+                      {link.label}
+                    </span>
+                  </div>
+                  <ArrowUpRight className="h-4 w-4 text-[var(--soft)] transition group-hover:text-white" />
+                </a>
+              );
+            })}
+          </div>
+        </div>
+      </footer>
+
+      <button
+        type="button"
+        onClick={scrollToTop}
+        aria-label="Scroll to top"
+        className={`scroll-top-button ${showScrollTop ? "scroll-top-visible" : ""}`}
+      >
+        <ChevronUp className="h-5 w-5" />
+      </button>
     </main>
   );
 }
